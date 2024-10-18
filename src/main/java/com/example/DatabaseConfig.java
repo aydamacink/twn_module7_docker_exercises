@@ -23,9 +23,9 @@ public class DatabaseConfig {
         datasource.setServerName(serverName);
         datasource.setDatabaseName(dbName);
         datasource.setPort(3306); // default config
-        datasource.setURL("jdbc:mysql://localhost:3306/dbname");
-
-
+        // Construct the JDBC URL dynamically using environment variables
+        String jdbcUrl = String.format("jdbc:mysql://%s:3306/%s", serverName, dbName);
+        datasource.setURL(jdbcUrl); // Now setting the dynamic JDBC URL
     }
 
     @Bean
